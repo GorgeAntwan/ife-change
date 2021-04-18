@@ -25,13 +25,13 @@ const User = sequelize.define('user',{
         type:Sequelize.INTEGER(14),
         allowNull:false,
     },
-    age:{
-        type:Sequelize.INTEGER,
+    birthdate:{
+        type:Sequelize.DATEONLY,
         allowNull:false,
     },
     city:{
         type:Sequelize.STRING,
-        allowNull:false,
+        allowNull:false, 
     },
     status :{
         type:Sequelize.STRING,
@@ -48,11 +48,16 @@ const User = sequelize.define('user',{
     role:{
         type:Sequelize.INTEGER,
         defaultValue:0,
+    },
+    resetToken:{
+        type:Sequelize.STRING,
+        allowNull:true,
+    },
+    resetTokenExpiration:{
+        type:Sequelize.DATE,
+        allowNull:true,
     }
     
-
-
-
 });
 
 module.exports =User;

@@ -8,11 +8,15 @@ const sequelize = require('./utils/database');
 const config=require('./store/config');
 const logger = require('winston');
 const passport = require('passport');
+const dotenv = require('dotenv');
+
+
 var cors = require('cors')
+ 
 const {applyPassportStrategy} =require('./store/passport');
 // Set up CORS
 app.use(cors());
-
+dotenv.config(); 
 // Apply strategy to passport
 applyPassportStrategy(passport);
 
@@ -25,6 +29,10 @@ app.use(express.json())
 /**
  * // to allow access 
 app.use((req,res,next)=>{
+console.log("🚀 ~ file: app.js ~ line 33 ~ dotenv", dotenv)
+console.log("🚀 ~ file: app.js ~ line 32 ~ dotenv", dotenv)
+console.log("🚀 ~ file: app.js ~ line 32 ~ dotenv", dotenv)
+console.log("🚀 ~ file: app.js ~ line 32 ~ dotenv", dotenv)
   res.setHeader('Access-Control-Allow-Origin','*');
   res.setHeader('Access-Control-Allow-Headers','X-Requested-With,Origin,Content-Type,Accept,Authorization');
   res.setHeader('Access-Control-Allow-Methods','GET,POST,DELETE,PATCH');
@@ -54,7 +62,8 @@ app.use((error, req, res, next) => {
   });
 sequelize
 .sync()
-//.sync({force: true})
+//.sync({ alter: true })// when you want to change spesific column in table
+//.sync({force: true}) 
 .then(result=>{
   console.log(result);
   app.listen(3000);
