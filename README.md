@@ -1,2 +1,2 @@
 # life-change
-#npm install
+npm install
